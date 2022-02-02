@@ -2,7 +2,7 @@
 
 # New Relic Netlify Plugin ![GitHub](https://img.shields.io/github/license/newrelic-experimental/newrelic-netlify-plugin) ![GitHub issues](https://img.shields.io/github/issues/newrelic-experimental/newrelic-netlify-plugin) ![GitHub pull requests](https://img.shields.io/github/issues-pr/newrelic-experimental/newrelic-netlify-plugin) ![GitHub last commit](https://img.shields.io/github/last-commit/newrelic-experimental/newrelic-netlify-plugin) ![npm (scoped)](https://img.shields.io/npm/v/@newrelic/newrelic-netlify-plugin) ![npm](https://img.shields.io/npm/dt/@newrelic/newrelic-netlify-plugin) ![npms.io (quality)](https://img.shields.io/npms-io/maintenance-score/@newrelic/newrelic-netlify-plugin) ![Libraries.io dependency status for latest release, scoped npm package](https://img.shields.io/librariesio/release/npm/@newrelic/newrelic-netlify-plugin) ![Lines of code](https://img.shields.io/tokei/lines/github/newrelic-experimental/newrelic-netlify-plugin)
 
-Monitor your Netlify build process and Jamstack application performance with New Relic, without the need for lengthy manual set up.
+Monitor your [Netlify](https://www.netlify.com/) build process and Jamstack application performance with [New Relic](https://newrelic.com/), without the need for lengthy manual set up.
 
 The New Relic Netlify Plugin:
 
@@ -16,19 +16,19 @@ For detailed installation instructions see "Jumpstart your Jamstack monitoring w
 
 ### UI Installation
 
-UI installation is the quickest way to start using the plugin, and does not require any modifications to your project's code.
+[UI installation](https://docs.netlify.com/configure-builds/build-plugins/#ui-installation) is the quickest way to start using the plugin, and does not require any modifications to your project's code.
 
-- Navigate to the Netlify plugin directory, search for New Relic, and select install and then choose which of your Netlify sites will use the plugin
-- Go to your site settings > build and deploy > environment and set the following environment variables:
-  - NEWRELIC_ACCOUNT_ID: Your New Relic Account ID
-  - NEWRELIC_INGEST_LICENSE_KEY: The ingest license key you created earlier
-  - NEWRELIC_BROWSER_LICENSE_KEY: The browser ingest license key your created earlier
-  - NEWRELIC_APP_ID: Your New Relic Browser App ID
+- Navigate to the [Netlify plugin directory](https://app.netlify.com/plugins), search for New Relic, and select install and then choose which of your Netlify sites will use the plugin
+- Go to your site settings > build and deploy > environment and set the following [environment variables](https://docs.netlify.com/configure-builds/environment-variables/):
+  - NEWRELIC_ACCOUNT_ID: Your [New Relic Account ID](https://docs.newrelic.com/docs/accounts/accounts-billing/account-structure/account-id/)
+  - NEWRELIC_INGEST_LICENSE_KEY: A New Relic [ingest license key](https://docs.newrelic.com/docs/apis/intro-apis/new-relic-api-keys/#ingest-license-key)
+  - NEWRELIC_BROWSER_LICENSE_KEY: A New Relic [browser ingest license key](https://docs.newrelic.com/docs/apis/intro-apis/new-relic-api-keys/#ingest-browser-key)
+  - NEWRELIC_APP_ID: Your New Relic [Browser App ID](https://docs.newrelic.com/docs/apis/rest-api-v2/get-started/get-app-other-ids-new-relic-one/#browser)
   - ENABLE_BROWSER_MONITORING: Set this to true
 
 ### File-based Installation
 
-Alternatively, to install with file-based installation, add the following lines to your `netlify.toml` files:
+Alternatively, to install with [file-based installation](https://docs.netlify.com/configure-builds/build-plugins/#file-based-installation), add the following lines to your `netlify.toml` files:
 
 ```[[plugins]]
 package = "@newrelic/newrelic-netlify-plugin"
@@ -41,11 +41,11 @@ package = "@newrelic/newrelic-netlify-plugin"
     enableBrowserMonitoring = true
 ```
 
-Replace the values for `newrelicAccountId`, `newrelicLicenseKey`, `newrelicBrowserLicenseKey`, and `newrelicAppId` with your New Relic Account ID, the ingest license key and browser ingest license key you created earlier, and your New Relic Browser App ID.
+Replace the values for `newrelicAccountId`, `newrelicLicenseKey`, `newrelicBrowserLicenseKey`, and `newrelicAppId` with your New Relic Account ID, the ingest and browser ingest license key you, and your New Relic Browser App ID.
 
 ## Install the Netlify quickstart
 
-To get the most out of your Netlify integration you should also install the New Relic Netlify quickstart. You can find more information on the quickstart page on New Relic I/O.
+To get the most out of your Netlify integration you should also install the New Relic Netlify quickstart. You can find more information on the quickstart page on [New Relic I/O](https://newrelic.com/platform/about-instant-observability).
 
 ## Settings
 
@@ -74,9 +74,9 @@ The plugin allows for customisation of the following settings via environment va
 
 ## Support
 
-The plugin is part of New Relic experimental. The project is being developed in the open and we welcome all feedback and contributions.
+The plugin is part of [New Relic experimental](https://opensource.newrelic.com/oss-category/#new-relic-experimental). The project is being developed in the open and we welcome all feedback and contributions.
 
-Please raise an issue or contact us via the New Relic Explorers Hub.
+Please [raise an issue](https://github.com/newrelic-experimental/newrelic-netlify-plugin/issues) or contact us via the [New Relic Explorers Hub](https://discuss.newrelic.com/).
 
 ## Contributing
 
@@ -86,7 +86,7 @@ Keep in mind when you submit your pull request, you'll need to sign the CLA via 
 
 If you have any questions, or to execute our corporate CLA, required if your contribution is on behalf of a company, please drop us an email at opensource@newrelic.com.
 
-**A note about vulnerabilities**
+## A note about vulnerabilities
 
 As noted in our [security policy](../../security/policy), New Relic is committed to the privacy and security of our customers and their data. We believe that providing coordinated disclosure by security researchers and engaging with the security community are important means to achieve our security goals.
 
