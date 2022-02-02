@@ -1,0 +1,45 @@
+name: newrelic-netlify-build-plugin
+inputs:
+  - name: failBuildOnPluginError
+    description: Set this to false if you want the build to continue if the plugin encounters an error
+    default: true
+  - name: newrelicAccountId
+    description: Your New Relic Account ID (required for event tracking & browser monitoring)
+  - name: newrelicLicenseKey
+    description: Your New Relic Ingest License Key (required for event tracking)
+  - name: newrelicBrowserLicenseKey
+    description: Your New Relic Browser Key (required for browser monitoring)
+  - name: newrelicAppId
+    description: Your New Relic APM App ID (required for deployment marking & browser monitoring)
+  - name: newrelicApiKey
+    description: Your New Relic User Key (required for deployment marking)
+  - name: setDeploymentMarkers
+    description: Set this to to false to disable deployment marker creation
+    default: false
+  - name: setDeploymentMarkersForPreviews
+    description: Set this to true if you want to create deployment markers for deploy previews
+    default: false
+  - name: recordEventsForPreviews
+    description: Set this to true if you want to record events for deploy previews
+    default: false
+  - name: skipEvent
+    required: false
+    description: Disable recording of build events
+  - name: enableBrowserMonitoring
+    default: false
+    description: Enable browser monitoring for static sites
+  - name: enableBrowserMonitoringForPreviews
+    description: Set this to true if you want to enable browser monitoring for deploy previews
+    default: false
+  - name: distributedTracingEnabled
+    default: true
+    description: Enable distributed tracing for browser requests
+  - name: cookiesEnabled
+    default: true
+    description: Enable cookies for browser monitoring
+  - name: htmlInjectionConcurrency
+    default: 5
+    description: Number of concurrently pending promises to use when injecting browser agent
+  - name: revisionTemplate
+    description: Deploy marker revision and release version id structure (EJS string)
+    default: "<%if(git.commits[0].message){%><%=git.commits[0].message.slice(0,25)%>-<%}%><%=process.env.CONTEXT%>-<%=process.env.COMMIT_REF.slice(0, 7)%>-<%=process.env.DEPLOY_ID.slice(-6)%>-<%=process.env.BUILD_ID.slice(-6)%>"

@@ -1,0 +1,37 @@
+---
+<% if(deploymentMarkerUUID) { %>
+- **Deployment marker:** <%= deploymentMarkerUUID %>
+<% } %>
+
+
+<% if(eventsRecorded.length > 0) { %>
+**Events recorded:**
+<% eventsRecorded.forEach(function(event){ %>
+ - <%= event.name %>: <%= event.uuid %>
+<% }) %>
+<% } %>
+
+
+<% if(htmlFilesInjected.length > 0) { %>
+<% if(htmlFilesInjected.length < 20) { %>
+**Pages injected:**
+<% htmlFilesInjected.forEach(function(file){ %>
+ - <%= file %>
+<% }) %>
+<% } else { %>
+**Pages injected:**
+Browser agent added to <%= htmlFilesInjected.length %> pages
+<% } %>
+<% } %>
+
+<% if(htmlFilesNotInjected.length > 0) { %>
+<% if(htmlFilesNotInjected.length < 20) { %>
+**Pages not injected:**
+<% htmlFilesNotInjected.forEach(function(file){ %>
+ - <%= file %>
+<% }) %>
+<% } else { %>
+**Pages not injected:**
+Browser agent was not added to <%= htmlFilesNotInjected.length %> pages
+<% } %>
+<% } %>

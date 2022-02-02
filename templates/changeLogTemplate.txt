@@ -1,0 +1,42 @@
+Netlify:
+    Build ID: <%= env.BUILD_ID %>
+    Deployment ID: <%= env.DEPLOY_ID %>
+    Site ID: <%= env.SITE_ID %>
+    Site Name: <%= env.SITE_NAME %>
+    Context: <%= env.CONTEXT %>
+
+Deployment Branch: <%= env.BRANCH %>
+Commit Ref: <%= env.COMMIT_REF %>
+<% if(git.commits[0].sha != "") {%>
+Commits in this deployment: <%= git.commits.length %>
+Lines Edited: <%= git.linesOfCode %>
+
+<% if(git.createdFiles.length > 0) { %>
+Files Created:
+<% git.createdFiles.forEach(function(file){ %>    <%= file %>
+<% }) %>
+<% } %>
+
+<% if(git.modifiedFiles.length > 0) { %>
+Files Modified:
+<% git.modifiedFiles.forEach(function(file){ %>    <%= file %>
+<% }) %>
+<% } %>
+
+<% if(git.deletedFiles.length > 0) { %>
+Files Deleted:
+<% git.deletedFiles.forEach(function(file){ %>    <%= file %>
+<% }) %>
+<% } %>
+
+Commit Log:
+
+<% git.commits.forEach(function(commit){ %>
+    commit <%= commit.sha %>
+    Author: <%= commit.committer.name %> <<%= commit.committer.email %>>
+    Date: <%= commit.committer.date %>
+
+        <%= commit.message %>
+
+<% }) %>
+<%}%>

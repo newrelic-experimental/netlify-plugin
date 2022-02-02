@@ -1,0 +1,50 @@
+{
+  "type": "module",
+  "name": "@newrelic/newrelic-netlify-plugin",
+  "version": "0.1.0",
+  "description": "New Relic Netlify Plugin",
+  "exports": "./index.js",
+  "keywords": [
+    "netlify",
+    "netlify-plugin",
+    "performance",
+    "monitoring",
+    "instrumentation",
+    "newrelic",
+    "new relic",
+    "serverless",
+    "Jamstack",
+    "CI",
+    "CD",
+    "continuous integration",
+    "continuous deployment",
+    "plugin",
+    "browser monitoring",
+    "RUM",
+    "real user monitoring",
+    "error tracking"
+  ],
+  "homepage": "https://github.com/newrelic-experimental/newrelic-netlify-plugin",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/newrelic-experimental/newrelic-netlify-plugin.git"
+  },
+  "contributors": [
+    {
+      "name": "Aaron Bassett",
+      "email": "abassett@newrelic.com",
+      "url": "https://github.com/aaronbassett"
+    }
+  ],
+  "license": "Apache-2.0",
+  "engines": {
+    "node": ">=16.13.1"
+  },
+  "dependencies": {
+    "axios": "^0.24.0",
+    "ejs": "^3.1.6",
+    "glob": "^7.2.0",
+    "p-map": "^5.3.0",
+    "pluralize": "^8.0.0"
+  }
+}
