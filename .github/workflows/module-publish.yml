@@ -30,8 +30,8 @@ jobs:
       run: |
         git config user.name $GITHUB_ACTOR
         git config user.email gh-actions-${GITHUB_ACTOR}@github.com
-    - name: Version ${{ inputs.release_type }}
-      run: npm version ${{ inputs.release_type }}
+    - name: Version ${{ github.event.inputs.release_type }}
+      run: npm version ${{ github.event.inputs.release_type }}
     - name: Publish module
       run: npm publish
       env:
