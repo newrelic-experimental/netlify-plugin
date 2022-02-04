@@ -1,6 +1,6 @@
 [![New Relic Experimental header](https://github.com/newrelic/opensource-website/raw/master/src/images/categories/Experimental.png)](https://opensource.newrelic.com/oss-category/#new-relic-experimental)
 
-# New Relic Netlify Plugin ![GitHub](https://img.shields.io/github/license/newrelic-experimental/newrelic-netlify-plugin) ![GitHub issues](https://img.shields.io/github/issues/newrelic-experimental/newrelic-netlify-plugin) ![GitHub pull requests](https://img.shields.io/github/issues-pr/newrelic-experimental/newrelic-netlify-plugin) ![GitHub last commit](https://img.shields.io/github/last-commit/newrelic-experimental/newrelic-netlify-plugin) ![npm (scoped)](https://img.shields.io/npm/v/@newrelic/newrelic-netlify-plugin) ![npm](https://img.shields.io/npm/dt/@newrelic/newrelic-netlify-plugin) ![npms.io (quality)](https://img.shields.io/npms-io/maintenance-score/@newrelic/newrelic-netlify-plugin) ![Libraries.io dependency status for latest release, scoped npm package](https://img.shields.io/librariesio/release/npm/@newrelic/newrelic-netlify-plugin) ![Lines of code](https://img.shields.io/tokei/lines/github/newrelic-experimental/newrelic-netlify-plugin)
+# New Relic Netlify Plugin ![GitHub](https://img.shields.io/github/license/newrelic-experimental/newrelic-netlify-plugin) ![GitHub issues](https://img.shields.io/github/issues/newrelic-experimental/newrelic-netlify-plugin) ![GitHub pull requests](https://img.shields.io/github/issues-pr/newrelic-experimental/newrelic-netlify-plugin) ![GitHub last commit](https://img.shields.io/github/last-commit/newrelic-experimental/newrelic-netlify-plugin) ![npm (scoped)](https://img.shields.io/npm/v/@newrelic/netlify-plugin) ![npm](https://img.shields.io/npm/dt/@newrelic/netlify-plugin) ![npms.io (quality)](https://img.shields.io/npms-io/maintenance-score/@newrelic/netlify-plugin) ![Libraries.io dependency status for latest release, scoped npm package](https://img.shields.io/librariesio/release/npm/@newrelic/netlify-plugin) ![Lines of code](https://img.shields.io/tokei/lines/github/newrelic-experimental/newrelic-netlify-plugin)
 
 Monitor your [Netlify](https://www.netlify.com/) build process and Jamstack application performance with [New Relic](https://newrelic.com/), without the need for lengthy manual set up.
 
@@ -31,7 +31,7 @@ For detailed installation instructions see "Jumpstart your Jamstack monitoring w
 Alternatively, to install with [file-based installation](https://docs.netlify.com/configure-builds/build-plugins/#file-based-installation), add the following lines to your `netlify.toml` files:
 
 ```[[plugins]]
-package = "@newrelic/newrelic-netlify-plugin"
+package = "@newrelic/netlify-plugin"
 
   [plugins.inputs]
     newrelicAccountId = "123456"
