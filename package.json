@@ -24,10 +24,10 @@
     "real user monitoring",
     "error tracking"
   ],
-  "homepage": "https://github.com/newrelic-experimental/newrelic-netlify-plugin",
+  "homepage": "https://github.com/newrelic-experimental/netlify-plugin",
   "repository": {
     "type": "git",
-    "url": "https://github.com/newrelic-experimental/newrelic-netlify-plugin.git"
+    "url": "https://github.com/newrelic-experimental/netlify-plugin.git"
   },
   "contributors": [
     {
