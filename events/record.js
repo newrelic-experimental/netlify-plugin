@@ -27,45 +27,45 @@ export const recordEvent = async (eventData) => {
         )
       }
 
-      try {
-        const response = await axios({
-          url: `https://insights-collector.newrelic.com/v1/accounts/${NEWRELIC_ACCOUNT_ID}/events`,
-          method: "post",
-          headers: {
-            "Content-Type": "application/json",
-            "Api-Key": NEWRELIC_INGEST_LICENSE_KEY,
+      axios({
+        url: `https://insights-collector.newrelic.com/v1/accounts/${NEWRELIC_ACCOUNT_ID}/events`,
+        method: "post",
+        headers: {
+          "Content-Type": "application/json",
+          "Api-Key": NEWRELIC_INGEST_LICENSE_KEY,
+        },
+        data: [
+          {
+            eventType: `Netlify:${eventName}`,
+            siteId: process.env.SITE_ID,
+            siteName: process.env.SITE_NAME,
+            commitRef: process.env.COMMIT_REF,
+            buildId: process.env.BUILD_ID,
+            deployId: process.env.DEPLOY_ID,
+            branch: process.env.BRANCH,
+            context: process.env.CONTEXT,
+            deployUrl: process.env.DEPLOY_URL,
+            repositoryUrl: process.env.REPOSITORY_URL,
+            netlifyBuildVersion: constants.NETLIFY_BUILD_VERSION,
           },
-          data: [
-            {
-              eventType: `Netlify:${eventName}`,
-              siteId: process.env.SITE_ID,
-              siteName: process.env.SITE_NAME,
-              commitRef: process.env.COMMIT_REF,
-              buildId: process.env.BUILD_ID,
-              deployId: process.env.DEPLOY_ID,
-              branch: process.env.BRANCH,
-              context: process.env.CONTEXT,
-              deployUrl: process.env.DEPLOY_URL,
-              repositoryUrl: process.env.REPOSITORY_URL,
-              netlifyBuildVersion: constants.NETLIFY_BUILD_VERSION,
-            },
-          ],
+        ],
+      })
+        .then((response) => {
+          if (response.status == 200 && response.data?.success) {
+            deploySummaryResults.addRecordedEvent({
+              name: eventName,
+              uuid: response.data.uuid,
+            })
+            return
+          } else {
+            return errorResponse(`Could not record ${eventName} event`)
+          }
         })
-
-        if (response.status == 200 && response.data?.success) {
-          deploySummaryResults.addRecordedEvent({
-            name: eventName,
-            uuid: response.data.uuid,
+        .catch((error) => {
+          return errorResponse(`Could not record ${eventName} event`, {
+            error,
           })
-          return
-        } else {
-          return errorResponse(`Could not record ${eventName} event`)
-        }
-      } catch (error) {
-        return errorResponse(`Could not record ${eventName} event`, {
-          error,
         })
-      }
     }
   }
 }
