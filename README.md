@@ -12,7 +12,7 @@ The New Relic Netlify Plugin:
 
 ## Installation
 
-For detailed installation instructions see "Jumpstart your Jamstack monitoring with the New Relic Netlify plugin and quickstart"
+For detailed installation instructions see ["Jumpstart your Jamstack monitoring with the New Relic Netlify plugin and quickstart"](https://newrelic.com/blog/nerdlog/jumpstart-your-jamstack-monitoring)
 
 ### UI Installation
 
