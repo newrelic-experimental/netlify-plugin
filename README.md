@@ -2,17 +2,20 @@
 
 # New Relic Netlify Plugin ![GitHub](https://img.shields.io/github/license/newrelic-experimental/netlify-plugin) ![GitHub issues](https://img.shields.io/github/issues/newrelic-experimental/netlify-plugin) ![GitHub pull requests](https://img.shields.io/github/issues-pr/newrelic-experimental/netlify-plugin) ![GitHub last commit](https://img.shields.io/github/last-commit/newrelic-experimental/netlify-plugin) ![npm (scoped)](https://img.shields.io/npm/v/@newrelic/netlify-plugin) ![npm](https://img.shields.io/npm/dt/@newrelic/netlify-plugin) ![npms.io (quality)](https://img.shields.io/npms-io/maintenance-score/@newrelic/netlify-plugin) ![Libraries.io dependency status for latest release, scoped npm package](https://img.shields.io/librariesio/release/npm/@newrelic/netlify-plugin) ![Lines of code](https://img.shields.io/tokei/lines/github/newrelic-experimental/netlify-plugin)
 
+
 Monitor your [Netlify](https://www.netlify.com/) build process and Jamstack application performance with [New Relic](https://newrelic.com/), without the need for lengthy manual set up.
 
-The New Relic Netlify Plugin:
+Built for developers who want to know how their deploys are impacting site performance for users, the New Relic Plugin for Netlify enables you to: 
 
-- Notifies New Relic on Netlify build events including: Pre Build, Post Build, Sucess, and Failure.
-- Installs the browser agent across your static pages
-- Adds a release version to each deployment for easier monitoring and debugging
+- Automatically install the [New Relic browser agent](https://docs.newrelic.com/docs/browser/browser-monitoring/getting-started/introduction-browser-monitoring/) and notify New Relic each time a [build event](https://docs.netlify.com/configure-builds/build-plugins/create-plugins/#plug-into-events) occurs in Netlify. Get critical insights via [Real User Monitoring (RUM)](https://newrelic.com/products/browser-monitoring) into the performance of your Jamstack application.
+- Understand how each deploy impacts your site’s performance metrics in production.
+- Measure Google Core Web vitals on your site like Largest Contentful Paint, First Input Delay, and Cumulative Layout shift.
+- Quickly discover and fix errors before they impact your users. 
+- Explore your data using our custom-built dashboards and receive alerts/notifications when there’s an issue with your Netlify site. Installing the New Relic Netlify Plugin
 
 ## Installation
 
-For detailed installation instructions see "Jumpstart your Jamstack monitoring with the New Relic Netlify plugin and quickstart"
+To install the plugin, log into your New Relic account (or sign up for a [free account](https://newrelic.com/signup?utm_source=medium&utm_medium=content&utm_campaign=amer-ever-green-netlify_plugin&utm_content=webpage)), then create a [New Relic ingest license key](https://docs.newrelic.com/docs/apis/intro-apis/new-relic-api-keys/#ingest-license-key) and a [New Relic browser ingest license key.](https://docs.newrelic.com/docs/apis/intro-apis/new-relic-api-keys/#ingest-browser-key) 
 
 ### UI Installation
 
