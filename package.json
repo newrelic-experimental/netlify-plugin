@@ -1,7 +1,7 @@
 {
   "type": "module",
   "name": "@newrelic/netlify-plugin",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "New Relic Netlify Plugin",
   "exports": "./index.js",
   "keywords": [
