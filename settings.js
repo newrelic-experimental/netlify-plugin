@@ -10,6 +10,9 @@ const settings = (inputs) => {
   const NEWRELIC_BROWSER_LICENSE_KEY =
     process.env.NEWRELIC_BROWSER_LICENSE_KEY || inputs.newrelicBrowserLicenseKey
 
+  const NEWRELIC_REGION =
+    process.env.NEWRELIC_REGION || inputs.newrelicRegion
+
   const NEWRELIC_APP_ID = process.env.NEWRELIC_APP_ID || inputs.newrelicAppId
   const NEWRELIC_API_KEY = process.env.NEWRELIC_API_KEY || inputs.newrelicApiKey
 
@@ -70,6 +73,7 @@ const settings = (inputs) => {
     SKIP_ERROR_EVENT,
     SKIP_SUCCESS_EVENT,
     SKIP_END_EVENT,
+    NEWRELIC_REGION
   }
 }
 

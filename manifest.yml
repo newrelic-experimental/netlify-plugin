@@ -5,6 +5,9 @@ inputs:
     default: true
   - name: newrelicAccountId
     description: Your New Relic Account ID (required for event tracking & browser monitoring)
+  - name: newrelicRegion
+    description: Your New Relic region ("us" or "eu")
+    default: "us"
   - name: newrelicLicenseKey
     description: Your New Relic Ingest License Key (required for event tracking)
   - name: newrelicBrowserLicenseKey

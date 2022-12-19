@@ -8,7 +8,7 @@ export const makeRequest = async (pluginApi) => {
   const { constants, inputs, utils, netlifyConfig, packageJson } = pluginApi
   const { build, git } = utils
 
-  const { NEWRELIC_APP_ID, NEWRELIC_API_KEY } = settings(inputs)
+  const { NEWRELIC_APP_ID, NEWRELIC_API_KEY, NEWRELIC_REGION } = settings(inputs)
   const errorResponse = getErrorResponse(inputs, build)
 
   const revisionUUID = revision(
@@ -35,8 +35,10 @@ export const makeRequest = async (pluginApi) => {
     },
   }
 
+  let url = `https://api.${NEWRELIC_REGION === "eu" ? "eu." : ""}newrelic.com/v2/applications/${NEWRELIC_APP_ID}/deployments.json`
+
   axios({
-    url: `https://api.newrelic.com/v2/applications/${NEWRELIC_APP_ID}/deployments.json`,
+    url,
     method: "post",
     headers: {
       "Content-Type": "application/json",

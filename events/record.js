@@ -7,6 +7,7 @@ export const recordEvent = async (eventData) => {
   const {
     NEWRELIC_ACCOUNT_ID,
     NEWRELIC_INGEST_LICENSE_KEY,
+    NEWRELIC_REGION,
     IS_PREVIEW,
     RECORD_EVENTS_FOR_PREVIEWS,
   } = settings
@@ -27,8 +28,10 @@ export const recordEvent = async (eventData) => {
         )
       }
 
+      let url = `https://insights-collector.${NEWRELIC_REGION === "eu" ? "eu01.nr-data.net" : "newrelic.com"}/v1/accounts/${NEWRELIC_ACCOUNT_ID}/events`
+
       axios({
-        url: `https://insights-collector.newrelic.com/v1/accounts/${NEWRELIC_ACCOUNT_ID}/events`,
+        url,
         method: "post",
         headers: {
           "Content-Type": "application/json",
