@@ -1,54 +1,55 @@
+const processBoolSetting = (input) => String(input) === "true"
+
 const settings = (inputs) => {
   const IS_PREVIEW = process.env.CONTEXT == "deploy-preview"
   const FAIL_BUILD_ON_PLUGIN_ERROR =
-    process.env.FAIL_BUILD_ON_PLUGIN_ERROR || inputs.failBuildOnPluginError
+    processBoolSetting(process.env.FAIL_BUILD_ON_PLUGIN_ERROR ?? inputs.failBuildOnPluginError)
 
   const NEWRELIC_ACCOUNT_ID =
-    process.env.NEWRELIC_ACCOUNT_ID || inputs.newrelicAccountId
+    process.env.NEWRELIC_ACCOUNT_ID ?? inputs.newrelicAccountId
   const NEWRELIC_INGEST_LICENSE_KEY =
-    process.env.NEWRELIC_INGEST_LICENSE_KEY || inputs.newrelicLicenseKey
+    process.env.NEWRELIC_INGEST_LICENSE_KEY ?? inputs.newrelicLicenseKey
   const NEWRELIC_BROWSER_LICENSE_KEY =
-    process.env.NEWRELIC_BROWSER_LICENSE_KEY || inputs.newrelicBrowserLicenseKey
+    process.env.NEWRELIC_BROWSER_LICENSE_KEY ?? inputs.newrelicBrowserLicenseKey
 
   const NEWRELIC_REGION =
-    process.env.NEWRELIC_REGION || inputs.newrelicRegion
+    process.env.NEWRELIC_REGION ?? inputs.newrelicRegion
 
-  const NEWRELIC_APP_ID = process.env.NEWRELIC_APP_ID || inputs.newrelicAppId
-  const NEWRELIC_API_KEY = process.env.NEWRELIC_API_KEY || inputs.newrelicApiKey
+  const NEWRELIC_APP_ID = process.env.NEWRELIC_APP_ID ?? inputs.newrelicAppId
+  const NEWRELIC_API_KEY = process.env.NEWRELIC_API_KEY ?? inputs.newrelicApiKey
 
   const ENABLE_BROWSER_MONITORING =
-    process.env.ENABLE_BROWSER_MONITORING || inputs.enableBrowserMonitoring
+    processBoolSetting(process.env.ENABLE_BROWSER_MONITORING ?? inputs.enableBrowserMonitoring)
   const ENABLE_BROWSER_MONITORING_FOR_PREVIEWS =
-    process.env.ENABLE_BROWSER_MONITORING_FOR_PREVIEWS ||
-    inputs.enableBrowserMonitoringForPreviews
+    processBoolSetting(process.env.ENABLE_BROWSER_MONITORING_FOR_PREVIEWS ?? inputs.enableBrowserMonitoringForPreviews)
   const DISTRIBUTED_TRACING_ENABLED =
-    process.env.DISTRIBUTED_TRACING_ENABLED || inputs.distributedTracingEnabled
-  const COOKIES_ENABLED = process.env.COOKIES_ENABLED || inputs.cookiesEnabled
+    processBoolSetting(process.env.DISTRIBUTED_TRACING_ENABLED ?? inputs.distributedTracingEnabled)
+  const COOKIES_ENABLED = processBoolSetting(process.env.COOKIES_ENABLED ?? inputs.cookiesEnabled)
   const HTML_INJECTION_CONCURRENCY =
-    process.env.HTML_INJECTION_CONCURRENCY || inputs.htmlInjectionConcurrency
+    process.env.HTML_INJECTION_CONCURRENCY ?? inputs.htmlInjectionConcurrency
 
   const SET_DEPLOYMENT_MARKERS =
-    process.env.SET_DEPLOYMENT_MARKERS || inputs.setDeploymentMarkers
+    processBoolSetting(process.env.SET_DEPLOYMENT_MARKERS ?? inputs.setDeploymentMarkers)
   const SET_DEPLOYMENT_MARKERS_FOR_PREVIEWS =
-    process.env.SET_DEPLOYMENT_MARKERS_FOR_PREVIEWS ||
-    inputs.setDeploymentMarkersForPreviews
+    processBoolSetting(process.env.SET_DEPLOYMENT_MARKERS_FOR_PREVIEWS ?? inputs.setDeploymentMarkersForPreviews)
 
   const REVISION_TEMPLATE =
-    process.env.REVISION_TEMPLATE || inputs.revisionTemplate
+    process.env.REVISION_TEMPLATE ?? inputs.revisionTemplate
 
   const RECORD_EVENTS_FOR_PREVIEWS =
-    process.env.RECORD_EVENTS_FOR_PREVIEWS || inputs.recordEventsForPreviews
+    processBoolSetting(process.env.RECORD_EVENTS_FOR_PREVIEWS ?? inputs.recordEventsForPreviews)
   const SKIP_PRE_BUILD_EVENT =
-    process.env.SKIP_PRE_BUILD_EVENT || inputs.skipEvent?.onPreBuild
+    processBoolSetting(process.env.SKIP_PRE_BUILD_EVENT ?? inputs.skipEvent?.onPreBuild)
   const SKIP_BUILD_EVENT =
-    process.env.SKIP_BUILD_EVENT || inputs.skipEvent?.onBuild
+    processBoolSetting(process.env.SKIP_BUILD_EVENT ?? inputs.skipEvent?.onBuild)
   const SKIP_POST_BUILD_EVENT =
-    process.env.SKIP_POST_BUILD_EVENT || inputs.skipEvent?.onPostBuild
+    processBoolSetting(process.env.SKIP_POST_BUILD_EVENT ?? inputs.skipEvent?.onPostBuild)
   const SKIP_ERROR_EVENT =
-    process.env.SKIP_ERROR_EVENT || inputs.skipEvent?.onError
+    processBoolSetting(process.env.SKIP_ERROR_EVENT ?? inputs.skipEvent?.onError)
   const SKIP_SUCCESS_EVENT =
-    process.env.SKIP_SUCCESS_EVENT || inputs.skipEvent?.onSuccess
-  const SKIP_END_EVENT = process.env.SKIP_END_EVENT || inputs.skipEvent?.onEnd
+    processBoolSetting(process.env.SKIP_SUCCESS_EVENT ?? inputs.skipEvent?.onSuccess)
+  const SKIP_END_EVENT =
+    processBoolSetting(process.env.SKIP_END_EVENT ?? inputs.skipEvent?.onEnd)
 
   return {
     IS_PREVIEW,
