@@ -37,7 +37,7 @@ export const makeRequest = async (pluginApi) => {
 
   let url = `https://api.${NEWRELIC_REGION === "eu" ? "eu." : ""}newrelic.com/v2/applications/${NEWRELIC_APP_ID}/deployments.json`
 
-  axios({
+  let response = await axios({
     url,
     method: "post",
     headers: {
@@ -45,21 +45,19 @@ export const makeRequest = async (pluginApi) => {
       "Api-Key": NEWRELIC_API_KEY,
     },
     data,
+  }).catch(function(error) {
+    return errorResponse(
+      `Could not create deployment marker "${revisionUUID}"`,
+      error
+    )
   })
-    .then((response) => {
-      if (response.status == 201) {
-        deploySummaryResults.setDeploymentMarkerUUID(revisionUUID)
-        return
-      } else {
-        return errorResponse(
-          `Could not create deployment marker "${revisionUUID}" New Relic API responded with ${response.status} ${response.statusText}`
-        )
-      }
-    })
-    .catch(function (error) {
-      return errorResponse(
-        `Could not create deployment marker "${revisionUUID}"`,
-        error
-      )
-    })
+
+  if (response.status == 201) {
+    deploySummaryResults.setDeploymentMarkerUUID(revisionUUID)
+    return
+  } else {
+    return errorResponse(
+      `Could not create deployment marker "${revisionUUID}" New Relic API responded with ${response.status} ${response.statusText}`
+    )
+  }
 }
