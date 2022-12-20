@@ -6,6 +6,7 @@ export const recordEvent = async (eventData) => {
 
   const {
     NEWRELIC_ACCOUNT_ID,
+    NEWRELIC_APP_ID,
     NEWRELIC_INGEST_LICENSE_KEY,
     NEWRELIC_REGION,
     IS_PREVIEW,
@@ -42,6 +43,7 @@ export const recordEvent = async (eventData) => {
         data: [
           {
             eventType: `Netlify:${eventName}`,
+            appId: NEWRELIC_APP_ID,
             siteId: process.env.SITE_ID,
             siteName: process.env.SITE_NAME,
             commitRef: process.env.COMMIT_REF,
