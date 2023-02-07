@@ -7,6 +7,7 @@ export const recordEvent = async (eventData) => {
   const {
     NEWRELIC_ACCOUNT_ID,
     NEWRELIC_INGEST_LICENSE_KEY,
+    NEWRELIC_REGION,
     IS_PREVIEW,
     RECORD_EVENTS_FOR_PREVIEWS,
   } = settings
@@ -27,8 +28,12 @@ export const recordEvent = async (eventData) => {
         )
       }
 
-      axios({
-        url: `https://insights-collector.newrelic.com/v1/accounts/${NEWRELIC_ACCOUNT_ID}/events`,
+      let url = `https://insights-collector.${NEWRELIC_REGION === "eu" ? "eu01.nr-data.net" : "newrelic.com"}/v1/accounts/${NEWRELIC_ACCOUNT_ID}/events`
+
+      console.log(`Recording ${eventName} to ${url}`)
+
+      let response = await axios({
+        url,
         method: "post",
         headers: {
           "Content-Type": "application/json",
@@ -49,23 +54,22 @@ export const recordEvent = async (eventData) => {
             netlifyBuildVersion: constants.NETLIFY_BUILD_VERSION,
           },
         ],
+      }).catch((error) => {
+        return errorResponse(`Could not record ${eventName} event`, {
+          error,
+        })
       })
-        .then((response) => {
-          if (response.status == 200 && response.data?.success) {
-            deploySummaryResults.addRecordedEvent({
-              name: eventName,
-              uuid: response.data.uuid,
-            })
-            return
-          } else {
-            return errorResponse(`Could not record ${eventName} event`)
-          }
+
+      if (response.status == 200 && response.data?.success) {
+        deploySummaryResults.addRecordedEvent({
+          name: eventName,
+          uuid: response.data.uuid,
         })
-        .catch((error) => {
-          return errorResponse(`Could not record ${eventName} event`, {
-            error,
-          })
-        })
+        return
+      } else {
+        return errorResponse(`Could not record ${eventName} event`)
+      }
     }
-  }
+  } else { console.log(`Skipping recording ${eventName} event.`) }
+
 }

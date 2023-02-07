@@ -8,7 +8,7 @@ export const makeRequest = async (pluginApi) => {
   const { constants, inputs, utils, netlifyConfig, packageJson } = pluginApi
   const { build, git } = utils
 
-  const { NEWRELIC_APP_ID, NEWRELIC_API_KEY } = settings(inputs)
+  const { NEWRELIC_APP_ID, NEWRELIC_API_KEY, NEWRELIC_REGION } = settings(inputs)
   const errorResponse = getErrorResponse(inputs, build)
 
   const revisionUUID = revision(
@@ -35,29 +35,29 @@ export const makeRequest = async (pluginApi) => {
     },
   }
 
-  axios({
-    url: `https://api.newrelic.com/v2/applications/${NEWRELIC_APP_ID}/deployments.json`,
+  let url = `https://api.${NEWRELIC_REGION === "eu" ? "eu." : ""}newrelic.com/v2/applications/${NEWRELIC_APP_ID}/deployments.json`
+
+  let response = await axios({
+    url,
     method: "post",
     headers: {
       "Content-Type": "application/json",
       "Api-Key": NEWRELIC_API_KEY,
     },
     data,
+  }).catch(function(error) {
+    return errorResponse(
+      `Could not create deployment marker "${revisionUUID}"`,
+      error
+    )
   })
-    .then((response) => {
-      if (response.status == 201) {
-        deploySummaryResults.setDeploymentMarkerUUID(revisionUUID)
-        return
-      } else {
-        return errorResponse(
-          `Could not create deployment marker "${revisionUUID}" New Relic API responded with ${response.status} ${response.statusText}`
-        )
-      }
-    })
-    .catch(function (error) {
-      return errorResponse(
-        `Could not create deployment marker "${revisionUUID}"`,
-        error
-      )
-    })
+
+  if (response.status == 201) {
+    deploySummaryResults.setDeploymentMarkerUUID(revisionUUID)
+    return
+  } else {
+    return errorResponse(
+      `Could not create deployment marker "${revisionUUID}" New Relic API responded with ${response.status} ${response.statusText}`
+    )
+  }
 }
